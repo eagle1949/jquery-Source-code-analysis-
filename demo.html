@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script>
+		// jQuery的写法
+		var $jQuery = function(selector, context) {
+		  //JQ对象根本就是init函数的实例对象，而init则是jQuery原型上的一个对象，它本身是没有什么方法的，全靠从jQuery原型上拿
+		  return new $jQuery.fn.init(selector, context);
+		}
+		$jQuery.fn = $jQuery.prototype = {
+		  init: function() {
+		    this.name = 'aaron'
+		    return this;
+		  },
+		  constructor: $jQuery,
+		  sayName : function(){
+		  	console.log('ccc');
+		  }
+		}
+		//为了调用$jQuery.fn = $jQuery.prototype里面的方法
+		$jQuery.fn.init.prototype = $jQuery.fn;
+		var $a = $jQuery();
+		console.log('$jQuery的调用')
+		console.log($a);
+		console.log($jQuery('').sayName())
+		// var $$ = ajQuery = function(selector) {
+		//     //把原型上的init作为构造器
+		//     return new ajQuery.fn.init( selector );
+		// }
+
+		// ajQuery.fn = ajQuery.prototype = {
+		//     name: 'aaron',
+		//     init: function() {
+		//         console.log(this)
+		//     },
+		//     constructor: ajQuery
+		// }
+		// console.log($$);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
